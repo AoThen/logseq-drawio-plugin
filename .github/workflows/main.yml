@@ -41,14 +41,14 @@ jobs:
       - run: pnpm install
       - run: pnpm build
 
-      - name: upload
-        uses: actions/upload-artifact@main
-        with:
-          name: logseq-drawio-plugin
-          path: ${{ github.workspace }}
-      # - name: Install zip
-      #   uses: montudor/action-zip@v1
-      # - name: Release
-      #   run: npx semantic-release
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
+      # - name: upload
+      #   uses: actions/upload-artifact@main
+      #   with:
+      #     name: logseq-drawio-plugin
+      #     path: ${{ github.workspace }}
+      - name: Install zip
+        uses: montudor/action-zip@v1
+      - name: Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

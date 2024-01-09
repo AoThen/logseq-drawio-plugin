@@ -30,7 +30,7 @@ jobs:
           submodules: "true"
 
       - name: update
-        run: git submodule update --init --recursive
+        run: git submodule update --remote
         
       - uses: actions/setup-node@v3
         with:
@@ -40,17 +40,18 @@ jobs:
           version: 6.0.2
       - run: pnpm install
       - run: pnpm build
-      - run: ls
-      - name: upload
-        uses: actions/upload-artifact@main
-        with:
-          name: logseq-drawio-plugin
-          path: .
+      
+      # - run: ls
+      # - name: upload
+      #   uses: actions/upload-artifact@main
+      #   with:
+      #     name: logseq-drawio-plugin
+      #     path: .
 
-      # - name: Install zip
-      #   uses: montudor/action-zip@v1
+      - name: Install zip
+        uses: montudor/action-zip@v1
 
-      # - name: Release
-      #   run: npx semantic-release
-      #   env:
-      #     GITHUB_TOKEN: ${{ github.token }}
+      - name: Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

@@ -1,6 +1,6 @@
 {
   "name": "logseq-drawio-plugin",
-  "version": "11.0.1",
+  "version": "1.4.0",
   "main": "dist/index.html",
   "scripts": {
     "dev": "vite",

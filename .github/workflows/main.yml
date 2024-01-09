@@ -28,6 +28,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: "true"
+      - name: UPdate packages
+        run: git submodule update --init --recursive
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
@@ -36,9 +38,15 @@ jobs:
           version: 6.0.2
       - run: pnpm install
       - run: pnpm build
-      - name: Install zip
-        uses: montudor/action-zip@v1
-      - name: Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: upload
+      - uses: actions/upload-artifact@main
+        with:
+          name: logseq-drawio-plugin
+          path: ${{ github.workspace }}
+      # - name: Install zip
+      #   uses: montudor/action-zip@v1
+      # - name: Release
+      #   run: npx semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ github.token }}
